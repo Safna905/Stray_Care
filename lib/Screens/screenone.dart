@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ScreenOne extends StatelessWidget {
   const ScreenOne({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class ScreenOne extends StatelessWidget {
           color: Color(0xFFFFCE56),
           child: Center(
             child: Image.asset('assets/images/Rectangle_28-removebg-preview.png',
-            width: 261, height: 317,),
+            width: 261.w, height: 317.h,),
           ),
         ),
       ),
