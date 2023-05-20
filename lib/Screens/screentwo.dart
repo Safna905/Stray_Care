@@ -9,7 +9,7 @@ class ScreenTwo extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Color(0xFFFFCE56),
+          color: const Color(0xFFFFCE56),
           child: Center(
             child: Image.asset('assets/images/Rectangle_28-removebg-preview.png',
               width: 130.w, height: 158.h,),

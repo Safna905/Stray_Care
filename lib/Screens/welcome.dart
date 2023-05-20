@@ -13,7 +13,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFCE56),
+      backgroundColor: const Color(0xFFFFCE56),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -39,7 +39,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     textStyle: TextStyle(
                       fontSize: 30.sp,
                       fontWeight: FontWeight.w400,
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                     ),
                   ),
                   textAlign: TextAlign.center,
@@ -59,7 +59,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: 286.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40.r),
-                    color: Color(0xFFF5F5F5),
+                    color: const Color(0xFFF5F5F5),
                   ),
                   child: Column(
                     children: [
@@ -75,7 +75,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           height: 53.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100.r),
-                            color: Color(0xFF1F0C0C),
+                            color: const Color(0xFF1F0C0C),
                           ),
                         ),
                       ),
@@ -84,7 +84,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         child: Container(
                           height: 35.h,
                           width: 218.w,
-                          color: Color(0xFFFFFFFF),
+                          color: const Color(0xFFFFFFFF),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 7.h, horizontal: 22.w),
@@ -104,7 +104,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Container(
                             width: 162.w,
                             height: 58.h,
-                            color: Color(0xFFF0B219),
+                            color: const Color(0xFFF0B219),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: 22.h, horizontal: 57.w),
@@ -120,7 +120,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Container(
                             width: 162.w,
                             height: 58.h,
-                            color: Color(0xFF0F0E0E),
+                            color: const Color(0xFF0F0E0E),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: 22.h, horizontal: 55.w),
@@ -129,25 +129,27 @@ class _WelcomePageState extends State<WelcomePage> {
                                 style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xFFFFFFFF)),
+                                    color: const Color(0xFFFFFFFF)),
                               ),
                             ),
                           ),
                         ],
                       ),
+
+                      //sign in with google or Facebook
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 83.w),
                         child: Row(
                           children: [
-                            SizedBox(width: 26.w, child: Divider(
+                            SizedBox(width: 26.w, child: const Divider(
                               color: Color(0xFFD9D9D9),
                             )),
                             SizedBox(width: 10.w,),
-                            Text('If feeling lazy'),
+                            const Text('If feeling lazy'),
                             SizedBox(width: 10.w,),
                             SizedBox(
                               width: 26.w,
-                              child: Divider(
+                              child: const Divider(
                                 color: Color(0xFFD9D9D9),
                               ),
                             ),
