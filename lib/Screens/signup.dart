@@ -118,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
 
 
-                          //signin button
+                          //signup button
                           SizedBox(
                             height: 43.h,
                             width: 146.w,
