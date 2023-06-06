@@ -87,7 +87,7 @@
     },
     {
       "name": "flutter_screenutil",
-      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_screenutil-5.8.1",
+      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_screenutil-5.8.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -99,15 +99,15 @@
     },
     {
       "name": "google_fonts",
-      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/google_fonts-4.0.4",
+      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/google_fonts-5.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "http",
-      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/http-0.13.6",
+      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "http_parser",
@@ -123,15 +123,15 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.0.1",
+      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "lottie",
-      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/lottie-2.3.2",
+      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/lottie-2.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "matcher",
@@ -177,9 +177,9 @@
     },
     {
       "name": "path_provider_linux",
-      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.1.10",
+      "rootUri": "file:///C:/Users/Safna/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.1.11",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "path_provider_platform_interface",
@@ -290,7 +290,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-28T14:19:56.087582Z",
+  "generated": "2023-06-04T16:13:59.746457Z",
   "generator": "pub",
   "generatorVersion": "3.0.0"
 }

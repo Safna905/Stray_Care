@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:straycare/widgets/textfield.dart';
-import 'package:straycare/widgets/widgets.dart';
+
+import '../widgets/sizedbox.dart';
+import '../widgets/text.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
@@ -17,32 +19,77 @@ class _EditProfilePageState extends State<EditProfilePage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/Android Large - 2.png'),
-            fit:BoxFit.cover,
-          )
-
-        ),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage('assets/images/Android Large - 2.png'),
+          fit: BoxFit.cover,
+        )),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(children: [
-
-              Container(
-
-              ),
-              sizedbox(20.0, .0),
-              getTextField("text",Colors.redAccent,Colors.black,10.0,20.0),
-              sizedbox(20.0, .0),
-              getTextField("text",Colors.redAccent,Colors.black,10.0,20.0),
-              sizedbox(20.0, .0),
-              getTextField("text",Colors.redAccent,Colors.black,10.0,20.0),
-              sizedbox(20.0, .0),
-              getTextField("text",Colors.redAccent,Colors.black,10.0,20.0),
-              sizedbox(20.0, .0),
-
-            ],),
+            padding: EdgeInsets.all(15.0.w),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 70.h, bottom: 10.h),
+                  child: Image.asset('assets/images/Ellipse 12.png'),
+                ),
+                text('Edit profile picture', 20.sp, Colors.black,
+                    FontWeight.w600),
+                sizedbox(50.0.h, .0),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: text('Name', 20.sp, Colors.black, FontWeight.w600)),
+                sizedbox(10.0.h, .0),
+                getTextField("", Colors.black, 20.sp, Colors.black, 10.0.w,
+                    20.0.h, 10.r),
+                sizedbox(30.0, .0),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: text(
+                        'Phone Number', 20.sp, Colors.black, FontWeight.w600)),
+                sizedbox(10.0.h, .0),
+                getTextField("", Colors.black, 20.sp, Colors.black, 10.0.w,
+                    20.0.h, 10.r),
+                sizedbox(30.0, .0),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: text('Email', 20.sp, Colors.black, FontWeight.w600)),
+                sizedbox(10.0.h, .0),
+                getTextField("", Colors.black, 20.sp, Colors.black, 10.0.w,
+                    20.0.h, 10.r),
+                sizedbox(30.0, .0),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child:
+                        text('Username', 20.sp, Colors.black, FontWeight.w600)),
+                sizedbox(10.0.h, .0),
+                getTextField("", Colors.black, 20.sp, Colors.black, 10.0.w,
+                    20.0.h, 10.r),
+                sizedbox(30.0, .0),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child:
+                        text('password', 20.sp, Colors.black, FontWeight.w600)),
+                sizedbox(10.0.h, .0),
+                getTextField("", Colors.black, 20.sp, Colors.black, 10.0.w,
+                    20.0.h, 10.r),
+                sizedbox(30.0, .0),
+                SizedBox(
+                  height: 40.h,
+                  width: 142.h,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.r),
+                      ),
+                      backgroundColor: Colors.black,
+                    ),
+                    onPressed: () {},
+                    child: text('submit', 20.sp, Colors.white, FontWeight.w600),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

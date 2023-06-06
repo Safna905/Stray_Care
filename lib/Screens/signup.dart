@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:straycare/Screens/userhome.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -9,7 +10,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   final lightText = const Color(0xFFBDC3C7);
   final darkcolor = const Color(0xFF000000);
   final lightcolor = const Color(0xFFFFFFFF);
@@ -23,9 +23,9 @@ class _SignUpPageState extends State<SignUpPage> {
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(50.r),
                   borderSide:
-                  BorderSide(color: darkcolor, style: BorderStyle.solid)),
+                      BorderSide(color: darkcolor, style: BorderStyle.solid)),
               contentPadding:
-              EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                  EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
               hintText: hint,
               hintStyle: TextStyle(
                 fontSize: 16.sp,
@@ -34,21 +34,19 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-
         //Container for background image
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/Android Large - 1.png'),
-                fit: BoxFit.cover,
-              )),
+            image: AssetImage('assets/images/Android Large - 1.png'),
+            fit: BoxFit.cover,
+          )),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -65,12 +63,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 //Container for signup section
                 Padding(
-                  padding:  EdgeInsets.only(bottom: 30.h,
-                      right: 30.w,
-                      left: 30.w
-                  ),
+                  padding:
+                      EdgeInsets.only(bottom: 30.h, right: 30.w, left: 30.w),
                   child: Container(
-                    height: 562.h,
+                    height: 532.h,
                     width: 309.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.r),
@@ -80,12 +76,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
                         children: [
+
                           //let's get started text
                           Padding(
                             padding: EdgeInsets.only(
-                          top: 20.h,
-                        bottom:  30.h,
-                      ),
+                              top: 20.h,
+                              bottom: 30.h,
+                            ),
                             child: Text(
                               'Lets get Started',
                               style: TextStyle(
@@ -117,22 +114,25 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 25.h,
                           ),
 
-
                           //signup button
                           SizedBox(
                             height: 43.h,
                             width: 146.w,
                             child: OutlinedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const UserHomePage()));
+                                },
                                 style: OutlinedButton.styleFrom(
                                     backgroundColor: darkcolor,
                                     foregroundColor: lightcolor,
                                     elevation: 5.0,
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(120.r)
-                                    )
-                                ),
-
+                                        borderRadius:
+                                            BorderRadius.circular(120.r))),
                                 child: Text('SIGN UP',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -148,7 +148,6 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
         ),
-
       ),
     );
   }

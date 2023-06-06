@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:straycare/Screens/userhome.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _SignInPageState extends State<SignInPage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
             image: AssetImage('assets/images/Android Large - 1.png'),
             fit: BoxFit.cover,
@@ -61,12 +62,13 @@ class _SignInPageState extends State<SignInPage> {
 
               //Container for login section
               Padding(
-                padding:  EdgeInsets.only(bottom: 30.h,
+                padding:  EdgeInsets.only(
+                    bottom: 30.h,
                 right: 30.w,
                   left: 30.w
                 ),
                 child: Container(
-                  height: 562.h,
+                  height: 532.h,
                   width: 309.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.r),
@@ -80,7 +82,7 @@ class _SignInPageState extends State<SignInPage> {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 40.h),
                           child: Text(
-                            'Lets get Started',
+                            "Let's get Started",
                             style: TextStyle(
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
@@ -103,7 +105,9 @@ class _SignInPageState extends State<SignInPage> {
                           height: 43.h,
                           width: 146.w,
                           child: OutlinedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const UserHomePage()));
+                              },
                               style: OutlinedButton.styleFrom(
                                 backgroundColor: darkcolor,
                                 foregroundColor: lightcolor,
@@ -123,8 +127,11 @@ class _SignInPageState extends State<SignInPage> {
                         //sign in with facbook or google
                         Padding(
                           padding: EdgeInsets.symmetric(
-                              vertical: 18.h, horizontal: 83.w),
+
+                              vertical: 30.h,
+                              horizontal: 59.w),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
                                   width: 26.w,

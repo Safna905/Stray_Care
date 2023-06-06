@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:straycare/Screens/sign_in.dart';
+import 'package:straycare/Screens/signup.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _WelcomePageState extends State<WelcomePage> {
               //logo image section
               Padding(
                 padding: EdgeInsets.only(
-                    top: 40.h, left: 116.w, bottom: 46.h, right: 123.w),
+                     left: 116.w, bottom: 46.h, right: 123.w),
                 child: Image.asset(
                   'assets/images/Rectangle_28-removebg-preview.png',
                   width: 180.w,
@@ -34,17 +35,17 @@ class _WelcomePageState extends State<WelcomePage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 50.w),
                 child: Text(
-                  'A BETTER LIFE FOR STRAY ANIMALS',
-                  style: GoogleFonts.fredokaOne(
-                    textStyle: TextStyle(
+                  'A LIFELINE FOR INDIA’S STRAY ANIMALS',
+                  style: TextStyle(
                       fontSize: 30.sp,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w800,
+                      fontStyle: FontStyle.italic,
                       color: const Color(0xFFFFFFFF),
                     ),
-                  ),
                   textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
+
 
               //container of sign in section
               Padding(
@@ -101,22 +102,28 @@ class _WelcomePageState extends State<WelcomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 162.w,
-                            height: 58.h,
-                            color: const Color(0xFFF0B219),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 22.h, horizontal: 57.w),
-                              child: Text(
-                                'SIGN IN',
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w400,
+                         Container(
+                              width: 162.w,
+                              height: 58.h,
+                              color: const Color(0xFFF0B219),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 22.h, horizontal: 57.w),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()));
+                                  },
+                                  child: Text(
+                                    'SIGN IN',
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
+
                           Container(
                             width: 162.w,
                             height: 58.h,
@@ -124,12 +131,17 @@ class _WelcomePageState extends State<WelcomePage> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: 22.h, horizontal: 55.w),
-                              child: Text(
-                                'SIGN UP',
-                                style: TextStyle(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w400,
-                                    color: const Color(0xFFFFFFFF)),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
+                                },
+                                child: Text(
+                                  'SIGN UP',
+                                  style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color: const Color(0xFFFFFFFF)),
+                                ),
                               ),
                             ),
                           ),
