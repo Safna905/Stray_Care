@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
-
-
-textfield(_controller){
+Widget textfield(hint, fcolor, fsize, bordercolor, hpad, vpad, radius,fillcolor) {
   return TextField(
-    controller: _controller,
+      decoration: InputDecoration(
+        fillColor: fillcolor,
+          border: OutlineInputBorder(
 
-  );
+              borderRadius: BorderRadius.circular(radius),
+              borderSide:
+                  BorderSide(color: bordercolor, style: BorderStyle.solid)),
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: hpad, vertical: vpad),
+          hintText: hint,
+          hintStyle: TextStyle(
+            fontSize: fsize,
+            color: fcolor,
+          )));
 }
 
-Widget getTextField(hint,fcolor,fsize,bordercolor,hpad,vpad,radius) {
+Widget getTextField(hint, fcolor, fsize, bordercolor, hpad, vpad, radius) {
   return Material(
     elevation: 5,
     borderRadius: BorderRadius.circular(radius),
@@ -18,9 +27,9 @@ Widget getTextField(hint,fcolor,fsize,bordercolor,hpad,vpad,radius) {
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(radius),
                 borderSide:
-                BorderSide(color: bordercolor, style: BorderStyle.solid)),
+                    BorderSide(color: bordercolor, style: BorderStyle.solid)),
             contentPadding:
-            EdgeInsets.symmetric(horizontal: hpad, vertical: vpad),
+                EdgeInsets.symmetric(horizontal: hpad, vertical: vpad),
             hintText: hint,
             hintStyle: TextStyle(
               fontSize: fsize,
@@ -28,3 +37,4 @@ Widget getTextField(hint,fcolor,fsize,bordercolor,hpad,vpad,radius) {
             ))),
   );
 }
+

@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
+import 'package:straycare/Screens/sign_in.dart';
 import 'package:straycare/Screens/userhome.dart';
+
+import '../Connection/connection.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -14,11 +20,18 @@ class _SignUpPageState extends State<SignUpPage> {
   final darkcolor = const Color(0xFF000000);
   final lightcolor = const Color(0xFFFFFFFF);
 
-  Widget getTextField({required String hint}) {
+  var namectr = TextEditingController();
+  var emailctr = TextEditingController();
+  var placectr = TextEditingController();
+  var phonectr = TextEditingController();
+  var passwordctr = TextEditingController();
+
+  Widget getTextField(String hint, TextEditingController ctr) {
     return Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(50.r),
       child: TextField(
+          controller: ctr,
           decoration: InputDecoration(
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(50.r),
@@ -32,6 +45,39 @@ class _SignUpPageState extends State<SignUpPage> {
                 color: lightText,
               ))),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+
+    });
+  }
+
+  Future<void> signUp() async {
+    var data = {
+      "name": namectr.text,
+      'email': emailctr.text,
+      "place": placectr.text,
+      "phone": phonectr.text,
+      "password": passwordctr.text,
+    };
+    print("inside send data 1");
+    var response = await post(Uri.parse('${Con.url}register.php'), body: data);
+    print("inside send data");
+    if (jsonDecode(response.body)['result'] == 'Success') {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Registered....')));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const SignInPage()));
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Failed to register !!....')));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => SignUpPage()));
+    }
   }
 
   @override
@@ -76,7 +122,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
                         children: [
-
                           //let's get started text
                           Padding(
                             padding: EdgeInsets.only(
@@ -93,23 +138,23 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
 
                           //textfield for email
-                          getTextField(hint: 'FullName'),
+                          getTextField('FullName', namectr),
                           SizedBox(
                             height: 25.h,
                           ),
-                          getTextField(hint: 'Email'),
+                          getTextField('Email', emailctr),
                           SizedBox(
                             height: 25.h,
                           ),
-                          getTextField(hint: 'Place'),
+                          getTextField('Place', placectr),
                           SizedBox(
                             height: 25.h,
                           ),
-                          getTextField(hint: 'UserName'),
+                          getTextField('Phone', phonectr),
                           SizedBox(
                             height: 25.h,
                           ),
-                          getTextField(hint: 'Password'),
+                          getTextField('Password', passwordctr),
                           SizedBox(
                             height: 25.h,
                           ),
@@ -120,11 +165,24 @@ class _SignUpPageState extends State<SignUpPage> {
                             width: 146.w,
                             child: OutlinedButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const UserHomePage()));
+                                  if (namectr.text.isNotEmpty &&
+                                      emailctr.text.isNotEmpty &&
+                                      placectr.text.isNotEmpty &&
+                                      phonectr.text.isNotEmpty &&
+                                      passwordctr.text.isNotEmpty) {
+
+                                    setState(() {
+
+                                      signUp();
+                                      print('ready to add fields');
+                                    });
+
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                'All fields required !!!....')));
+                                  }
                                 },
                                 style: OutlinedButton.styleFrom(
                                     backgroundColor: darkcolor,

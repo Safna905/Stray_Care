@@ -117,7 +117,7 @@ class _UserHomePageState extends State<UserHomePage> {
                   text: 'ADOPT OR SPONSOR A STRAY ANIMAL',
                   bttntext: 'ADOPT',
                   image: 'assets/images/Rectangle 233.png',
-              navpage: AdoptPage()),
+              navpage: const AdoptPage()),
               SizedBox(
                 height: 30.h,
               ),
@@ -125,7 +125,7 @@ class _UserHomePageState extends State<UserHomePage> {
                   text: 'HELP US MORE LIVES DONATE TODAY',
                   bttntext: 'DONATE',
                   image: 'assets/images/Rectangle 220 (1).png',
-              navpage: DonatePage()),
+              navpage: const DonatePage()),
             ],
           ),
         ),

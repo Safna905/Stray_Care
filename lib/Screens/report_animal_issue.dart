@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:straycare/Screens/reportcatogory.dart';
 import 'package:straycare/widgets/sizedbox.dart';
 import 'package:straycare/widgets/text.dart';
 
@@ -108,7 +109,11 @@ class ReportAnimalIssuePge extends StatelessWidget {
                 SizedBox(
                   width: 165.w,
                   height: 53.h,
-                  child: TextButton(onPressed: () {},
+                  child: TextButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return ReportCatogoryPage();
+                    }));
+                  },
                     style: TextButton.styleFrom(
                       backgroundColor: const Color(0xFFFFCE56),
 

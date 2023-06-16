@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:straycare/Screens/sign_in.dart';
+import 'package:straycare/Screens/signincatogories.dart';
 import 'package:straycare/Screens/signup.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -111,7 +112,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                     vertical: 22.h, horizontal: 57.w),
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SigninCatogoriesPage()));
                                   },
                                   child: Text(
                                     'SIGN IN',
@@ -124,27 +125,27 @@ class _WelcomePageState extends State<WelcomePage> {
                               ),
                             ),
 
-                          Container(
-                            width: 162.w,
-                            height: 58.h,
-                            color: const Color(0xFF0F0E0E),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 22.h, horizontal: 55.w),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
-                                },
-                                child: Text(
-                                  'SIGN UP',
-                                  style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400,
-                                      color: const Color(0xFFFFFFFF)),
-                                ),
-                              ),
-                            ),
-                          ),
+                          // Container(
+                          //   width: 162.w,
+                          //   height: 58.h,
+                          //   color: const Color(0xFF0F0E0E),
+                          //   child: Padding(
+                          //     padding: EdgeInsets.symmetric(
+                          //         vertical: 22.h, horizontal: 55.w),
+                          //     child: GestureDetector(
+                          //       onTap: () {
+                          //         Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
+                          //       },
+                          //       child: Text(
+                          //         'SIGN UP',
+                          //         style: TextStyle(
+                          //             fontSize: 12.sp,
+                          //             fontWeight: FontWeight.w400,
+                          //             color: const Color(0xFFFFFFFF)),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
 

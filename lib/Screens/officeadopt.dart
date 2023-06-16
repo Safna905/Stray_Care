@@ -12,93 +12,78 @@ class _OfficeAdoptPageState extends State<OfficeAdoptPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 122.h,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(
+              top: 12.h,
+              bottom: 12.h,
+              right: 20.h,
+            ),
+            child: Image.asset(
+              'assets/images/Rectangle_28-removebg-preview.png',
+              height: 94.h,
+              width: 78.w,
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/lightbg.png',
-                ),
-                fit: BoxFit.fill,
-              )),
-          child:
-          SingleChildScrollView(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Icon(
-                  Icons.menu,
-                  size: MediaQuery.of(context).size.width * 0.1,
-                  color: Color(0xFFFFFFFF),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  right: 61.w,
-                  left: 61.w,
-                ),
-                child: Container(
-                  height: 75.h,
-                  width: 263.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(39.r),
-                    color: const Color(0xFF922020).withOpacity(0.42),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Adopted animals',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20.sp,
-                        color: const Color(0xFFFFFFFF),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
+          child: SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               //search bar
               Padding(
-                padding:EdgeInsets.symmetric(horizontal: 25.w,vertical: 32.h),
+                padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 32.h),
                 child: Container(
                   height: 53.h,
                   width: 310.w,
                   decoration: BoxDecoration(
-                    color: Color(0XFFFFFFFF).withOpacity(0.45),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
+                      color: Color(0XFFFFFFFF).withOpacity(0.45),
+                      borderRadius: BorderRadius.circular(8.r),
+                      border: Border.all(
+                        color: Colors.black,
+                      )),
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 25.w,
-                        vertical: 10.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
                     child: Row(
                       children: [
-                        Text('search',
+                        Text(
+                          'search',
                           style: TextStyle(
                             color: Color(0xFFBDC3C7),
                             fontWeight: FontWeight.w600,
                             fontSize: 20.sp,
-                          ),),
+                          ),
+                        ),
                         SizedBox(width: 150.w),
-                        Icon(Icons.search,
-                          size:MediaQuery.of(context).size.width * 0.09 ,
+                        Icon(
+                          Icons.search,
+                          size: MediaQuery.of(context).size.width * 0.09,
                         )
                       ],
                     ),
                   ),
                 ),
               ),
+
+              //gridview of images
               Container(
                 height: 500.h,
                 child: GridView.builder(
-                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 0.0,
-                      mainAxisSpacing: 0.0,
+                      childAspectRatio:1.5,
+
                     ),
                     itemCount: 10,
-                    itemBuilder: (context,index) {
+                    itemBuilder: (context, index) {
                       return Container(
                         height: 102.h,
                         width: 119.w,
@@ -111,6 +96,5 @@ class _OfficeAdoptPageState extends State<OfficeAdoptPage> {
         ),
       ),
     );
-
   }
 }

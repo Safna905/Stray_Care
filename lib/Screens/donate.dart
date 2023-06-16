@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'donation.dart';
+
 class DonatePage extends StatelessWidget {
   const DonatePage({Key? key}) : super(key: key);
 
@@ -24,115 +26,75 @@ class DonatePage extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //first container
-            Container(
-              height: 224.h,
-              width: 360.w,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('assets/images/images (4) 1.png'),
+      body: SafeArea(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/Android Large - 2do.png'),
                 fit: BoxFit.fill,
               )),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 53.h,
-                      bottom: 35.h,
-                      left: 20.w,
-                    ),
-                    child: Text(
-                      'GIVING STRAY ANIMALS A CHANCE',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24.sp,
-                          color: Color(0xFFFFFFFF)),
-                    ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+
+                //heading text
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 40.h,
+                    bottom: 35.h,
+                    left: 20.w,
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    child: Text(
-                      'Whether it’s a loving adoptive home or simply a better chance on the streets, we’re  ',
-                      style: TextStyle(
+                  child: Text(
+                    'GIVING STRAY ANIMALS A CHANCE',
+                    style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        color: Color(0xFFFFFFFF),
-                        fontSize: 16.sp,
-                      ),
-                      textAlign: TextAlign.justify,
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-            //second container
-            Container(
-              height: 188.h,
-              width: 360.w,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('assets/images/images (2) 1.png'),
-                fit: BoxFit.fill,
-              )),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: Text(
-                  'Whether it’s a loving adoptive home or simply a better chance on the streets, we’re fighting to give stray animals a better life in India. Despite its smart, social personality, India’s native dog breed, the “Pariah Dog”, is misunderstood as wild and dangerous, resulting in the local population being highly reluctant to adopt these animals.',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFFFFFFFF),
-                    fontSize: 16.sp,
+                        fontSize: 24.sp,
+                        color: Color(0xFFFFFFFF)),
                   ),
-                  textAlign: TextAlign.justify,
                 ),
-              ),
-            ),
 
-            //third container
-            Container(
-              height: 279.h,
-              width: 367.w,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('assets/images/images (5) 1.png'),
-                fit: BoxFit.fill,
-              )),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                //paragraph text
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Text(
-                    'reluctant to adopt these animals.',
+                      'Whether it’s a loving adoptive home or simply a better chance on the streets, we’re fighting to give stray animals a better life in India. Despite its smart, social personality, India’s native dog breed, the “Pariah Dog”, is misunderstood as wild and dangerous, resulting in the local population being highly reluctant to adopt these animals.',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Color(0xFFFFFFFF),
                       fontSize: 16.sp,
                     ),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
-                SizedBox(height: 50.h,),
-                SizedBox(
-                  height: 50.h,
-                  width: 183.w,
-                  child: TextButton(onPressed: () {},
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color(0xFFFFCE56)
-                      ),
-                      child: Text('DONATE',
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w600,
-                        color:  Color(0xFFFFFFFF),
-                      ),)),
+
+
+                //Donate button
+                Padding(
+                  padding:EdgeInsets.symmetric(vertical: 90.h),
+                  child: SizedBox(
+                    height: 50.h,
+                    width: 183.w,
+                    child: TextButton(onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DonationPage()));
+                    },
+                        style: TextButton.styleFrom(
+                            backgroundColor: Color(0xFFFFCE56)
+                        ),
+                        child: Text('DONATE',
+                          style: TextStyle(
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                            color:  Color(0xFFFFFFFF),
+                          ),)),
+                  ),
                 )
-              ]),
+
+
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

@@ -1,11 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:straycare/widgets/textbutton.dart';
+import 'package:straycare/Screens/pet_found.dart';
+
 
 import '../widgets/sizedbox.dart';
 
-class FindPage extends StatelessWidget {
+class FindPage extends StatefulWidget {
   const FindPage({Key? key}) : super(key: key);
+
+  @override
+  State<FindPage> createState() => _FindPageState();
+}
+
+class _FindPageState extends State<FindPage> {
+  Widget textbutton(swidth, sheight,bgcolor, radius, text, fsize,fw) {
+    return SizedBox(
+      width: swidth,
+      height: sheight,
+      child: TextButton(
+
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => PetFoundPage()));
+        },
+        style: TextButton.styleFrom(
+            backgroundColor: bgcolor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius)
+            )
+        ),
+        child: Text(text,
+          style: TextStyle(
+            color: const Color(0xFFFFFFFF),
+            fontSize: fsize,
+            fontWeight: fw,
+          ),
+        ),
+      ),
+    );
+
+  }
 
   @override
   Widget build(BuildContext context) {
