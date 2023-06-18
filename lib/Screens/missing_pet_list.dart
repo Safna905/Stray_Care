@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:straycare/widgets/sizedbox.dart';
+
+import '../widgets/text.dart';
+import 'missingdog.dart';
 
 class MissingPetListPage extends StatefulWidget {
   const MissingPetListPage({Key? key}) : super(key: key);
@@ -9,24 +13,28 @@ class MissingPetListPage extends StatefulWidget {
 }
 
 class _MissingPetListPageState extends State<MissingPetListPage> {
-
-  Widget getTextButton({required String text}) {
+  Widget getTextButton(String text, Widget navpage) {
     return Padding(
-      padding:  EdgeInsets.all(15.0.h),
+      padding: EdgeInsets.all(15.0.h),
       child: SizedBox(
-        height: 65.h,
-        width: 250.w,
-        child: TextButton(onPressed: () {},
+        height: 86.h,
+        width: 299.w,
+        child: TextButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => navpage));
+          },
           style: TextButton.styleFrom(
-              backgroundColor: Color(0XFF000000).withOpacity(0.25)
+            backgroundColor: const Color(0XFF0F0E0E).withOpacity(0.75),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.r)),
           ),
           child: Text(text,
               style: TextStyle(
                   fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFFFFFFFF)
-              )
-          ),),
+                  color: Color(0xFFFFFFFF))),
+        ),
       ),
     );
   }
@@ -34,109 +42,46 @@ class _MissingPetListPageState extends State<MissingPetListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
+        appBar: AppBar(
+          toolbarHeight: 112.h,
+          title: text('FIND MISSING PET', 20.sp, Colors.white, FontWeight.w600),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: 12.h,
+                bottom: 12.h,
+                right: 20.h,
+              ),
+              child: Image.asset(
+                'assets/images/Rectangle_28-removebg-preview.png',
+                height: 94.h,
+                width: 78.w,
+              ),
+            ),
+          ],
+        ),
+        body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           color: Color(0xFFFFCE56),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.menu,
-                      size: MediaQuery.of(context).size.width * 0.1,
-                    ),
-                    SizedBox(
-                      width: 146.w,
-                    ),
-                    Image.asset(
-                      'assets/images/Rectangle_28-removebg-preview.png',
-                      height: 136.h,
-                      width: 111.w,
-                    ),
-                  ],
-                ),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 53.h),
+            child: Container(
+              height: 622.h,
+              width: 360.w,
+              color: Color(0xFFFFFFFF),
+              child: Column(
+                children: [
+                  sbh30,
+                  sbh30,
+                  //catogories
+                  getTextButton('DOGS', MissingDogsPage()),
+                  getTextButton('CAT', MissingDogsPage()),
+                  getTextButton('OTHER',MissingDogsPage()),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 50.0.h,
-                top: 30.h),
-                child: Container(
-                  height: 75.h,
-                  width: 263.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(39.r),
-                    color: const Color(0xFFCE3434).withOpacity(0.4),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'MISSING PET LIST',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20.sp,
-                        color: const Color(0xFFFFFFFF),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              //search bar
-              Container(
-                height: 53.h,
-                width: 310.w,
-                decoration: BoxDecoration(
-                  color: Color(0XFFFFFFFF).withOpacity(0.45),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 25.w,
-                  vertical: 10.h),
-                  child: Row(
-                    children: [
-                      Text('search',
-                      style: TextStyle(
-                        color: Color(0xFFBDC3C7),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20.sp,
-                      ),),
-                      SizedBox(width: 150.w),
-                      Icon(Icons.search,
-                      size:MediaQuery.of(context).size.width * 0.09 ,
-                        )
-                    ],
-                  ),
-                ),
-                ),
-              
-              //select a catogory text
-            Padding(
-              padding: EdgeInsets.only(
-                top: 30.h,
-                bottom: 8.h,
-                left: 20.w,
-                right: 150.w,
-              ),
-              child: Text('Select a category :',
-              style: TextStyle(
-                fontSize: 20.sp,
-                color:Color(0xFFFFFFFF),
-                fontWeight: FontWeight.w600,
-              ),),
             ),
-
-              //catogories
-              getTextButton(text: 'DOGS'),
-              getTextButton(text: 'CAT'),
-              getTextButton(text: 'OTHER'),
-
-            ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

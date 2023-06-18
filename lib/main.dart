@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:straycare/Screens/donate.dart';
+import 'package:straycare/Screens/sign_in.dart';
 import 'package:straycare/Screens/welcome.dart';
 
 import 'Screens/adopt.dart';
@@ -16,7 +17,6 @@ import 'Screens/report_animal_issue.dart';
 import 'Screens/reportcatogory.dart';
 import 'Screens/screenone.dart';
 import 'Screens/signincatogories.dart';
-import 'Screens/signup.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFFFFCE56),
               )),
           home:
-          SignUpPage()
+            FindPage()
+          //SignUpPage()
           //WelcomePage()
           //MissingPetListPage(),
 

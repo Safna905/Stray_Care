@@ -65,7 +65,9 @@ class _SignUpPageState extends State<SignUpPage> {
       "password": passwordctr.text,
     };
     print("inside send data 1");
-    var response = await post(Uri.parse('${Con.url}register.php'), body: data);
+    var response = await post(Uri.parse('http://192.168.0.108/StrayCare/tables/register.php'), body: data);
+    print(response.statusCode);
+    print(response.body);
     print("inside send data");
     if (jsonDecode(response.body)['result'] == 'Success') {
       ScaffoldMessenger.of(context)

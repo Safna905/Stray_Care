@@ -1,19 +1,31 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:straycare/Screens/reportpetmissing.dart';
 import 'package:straycare/widgets/sizedbox.dart';
 import 'package:straycare/widgets/text.dart';
 
-class PetFoundPage extends StatelessWidget {
+import 'missing_pet_list.dart';
+
+class PetFoundPage extends StatefulWidget {
   const PetFoundPage({Key? key}) : super(key: key);
 
-  Widget getTextButton({required String text}) {
+  @override
+  State<PetFoundPage> createState() => _PetFoundPageState();
+}
+
+class _PetFoundPageState extends State<PetFoundPage> {
+  Widget getTextButton(String text, Widget navpage) {
     return Padding(
       padding: EdgeInsets.all(15.0.h),
       child: SizedBox(
         height: 86.h,
         width: 299.w,
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => navpage));
+          },
           style: TextButton.styleFrom(
               backgroundColor: const Color(0XFF0F0E0E).withOpacity(0.75),
             shape: RoundedRectangleBorder(
@@ -67,8 +79,8 @@ class PetFoundPage extends StatelessWidget {
                 sbh30,
                 sbh30,
                 //catogories of found your pet
-                getTextButton(text: 'MISSING PET LIST'),
-                getTextButton(text: 'REPORT YOUR PET MISSING'),
+                getTextButton('MISSING PET LIST', MissingPetListPage()),
+                getTextButton( 'REPORT PET MISSING',ReportPetMissingPage()),
               ],
             ),
           ),

@@ -18,11 +18,13 @@ Widget textfield(hint, fcolor, fsize, bordercolor, hpad, vpad, radius,fillcolor)
           )));
 }
 
-Widget getTextField(hint, fcolor, fsize, bordercolor, hpad, vpad, radius) {
+Widget getTextField(hint, fcolor, fsize, bordercolor, hpad, vpad, radius, TextEditingController ctr,[VoidCallback? callback]) {
   return Material(
     elevation: 5,
     borderRadius: BorderRadius.circular(radius),
     child: TextField(
+      controller: ctr,
+        onTap: callback,
         decoration: InputDecoration(
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(radius),
