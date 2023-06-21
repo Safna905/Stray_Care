@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFFFFCE56),
               )),
           home:
-            FindPage()
+
+            ReportAnimalIssuePge()
           //SignUpPage()
           //WelcomePage()
           //MissingPetListPage(),

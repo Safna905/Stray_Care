@@ -1,8 +1,10 @@
-import 'dart:convert';
+
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:straycare/widgets/textbutton.dart';
 import 'package:straycare/widgets/textfield.dart';
@@ -28,50 +30,58 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
   var animalTypectr = TextEditingController();
   var descriptionctr = TextEditingController();
 
-  Future<DateTime?> pickdate() async{
-    DateTime? pickedDate;
-      pickedDate = await showDatePicker(
-        context: (context),
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2015),
-        lastDate: DateTime(2030),
-    );
-
-    if(pickedDate != null) {
-      print(pickedDate);
-      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-      misDatectr.text = formattedDate;
-    }
-  }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
 
+  File? _image;
+  final picker = ImagePicker();
 
+  Future<DateTime?> pickdate() async {
+    DateTime? pickedDate;
+    pickedDate = await showDatePicker(
+      context: (context),
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      lastDate: DateTime(2030),
+    );
 
-  Future<void> submit() async {
-    var data = {
-      "user_id": "2",
-      "name": namectr.text,
-      "gender" : genderctr.text,
-      "color": colorctr.text,
-      "breed": breedctr.text,
-      "missingDate": misDatectr.text,
-      "location": locationctr.text,
-      "mob_no": mobctr.text,
-      "animal_type" : animalTypectr.text,
-      "description" : descriptionctr.text,
-      "report_date": DateTime.now().toString()
-    };
+    if (pickedDate != null) {
+      print(pickedDate);
+      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      misDatectr.text = formattedDate;
+    }
+  }
 
-    var response = await post(Uri.parse('${Con.url}missing.php'), body: data);
-    print(response.statusCode);
-    print(response.body);
+  Future chooseImage() async {
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = File(pickedImage!.path);
+    });
+  }
 
-    if (jsonDecode(response.body)['result'] == 'Success') {
+  Future upload(File imageFile) async {
+    var uri = Uri.parse('${Con.url}missing.php');
+    var request = http.MultipartRequest("POST", uri);
+
+    request.fields['user_id'] = '6';
+    request.fields['animal_type'] = animalTypectr.text;
+    request.fields['breed'] = breedctr.text;
+    request.fields['name'] = namectr.text;
+    request.fields['gender'] = genderctr.text;
+    request.fields['description'] = descriptionctr.text;
+    request.fields['color'] = colorctr.text;
+    request.fields['missingDate'] = misDatectr.text;
+    request.fields['report_date'] = DateTime.now().toString();
+    request.fields['mob_no'] = mobctr.text;
+    request.fields['location'] = locationctr.text;
+
+    var pic = await http.MultipartFile.fromPath('image', imageFile.path);
+    request.files.add(pic);
+    var response = await request.send();
+    if (response.statusCode == 200) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Submitted....')));
       Navigator.pop(context);
@@ -81,14 +91,22 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => ReportPetMissingPage()));
     }
+
   }
+
+  // Future<void> submit() async {
+  //
+  //
+  //
+
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 122.h,
-        title: Text('REPORT PET MISSING'),
+        title: const Text('REPORT PET MISSING'),
         actions: [
           Padding(
             padding: EdgeInsets.only(
@@ -110,20 +128,66 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
           child: Column(
             children: [
               //profile pic
-              ClipOval(
-                child: Container(
-                  height: 137.h,
-                  width: 161.w,
-                  child: Image.asset('assets/images/Ellipse 7.png'),
-                ),
+              Container(
+                height: 200.h,
+                width: 200.w,
+                color: Colors.red,
+                //child: Image.asset('assets/images/Ellipse 7.png'),
+                child: _image == null
+                    ? Stack(
+                        children: [
+                          Center(
+                            child: InkWell(
+                              onTap: () {
+                                upload(_image!);
+                              },
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                  height: 200,
+                                  width: 250,
+                                  child: Center(
+                                    child: Text('-- Click to select image --'),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                              right: 80.w,
+                              top: 150.w,
+                              child: Container(
+                                height: 50.w,
+                                width: 50.w,
+                                color: Colors.blueGrey[100],
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.photo_camera_back_outlined,
+                                    size: 30.w,
+                                    color: Colors.red,
+                                  ),
+                                  onPressed: () {
+                                    chooseImage();
+                                  },
+                                ),
+                              ))
+                        ],
+                      )
+                    : Container(
+                        height: 200,
+                        width: 250,
+                        child: Image.file(
+                          _image!,
+                          fit: BoxFit.cover,
+                        )),
               ),
-
+              sbh30,
               getTextField("Pet's name:", Colors.black, 15.sp, Colors.black,
                   20.0.w, 10.0.h, 50.r, namectr),
               sbh10,
 
-              getTextField("Gender:", Colors.black, 15.sp, Colors.black,
-                  20.0.w, 10.0.h, 50.r, genderctr),
+              getTextField("Gender:", Colors.black, 15.sp, Colors.black, 20.0.w,
+                  10.0.h, 50.r, genderctr),
               sbh10,
 
               getTextField("Color:", Colors.black, 15.sp, Colors.black, 20.0.w,
@@ -164,10 +228,11 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
                     descriptionctr.text.isNotEmpty &&
                     misDatectr.text.isNotEmpty &&
                     locationctr.text.isNotEmpty &&
-                    mobctr.text.isNotEmpty) {
+                    mobctr.text.isNotEmpty &&
+                    _image != null) {
                   setState(() {
                     print('ready');
-                    submit();
+                    upload(_image!);
                     print("ready to go");
                   });
                 } else {

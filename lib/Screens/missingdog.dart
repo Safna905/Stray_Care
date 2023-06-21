@@ -85,7 +85,7 @@ class _MissingDogsPageState extends State<MissingDogsPage> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          crossAxisSpacing: 0.0,
+                          crossAxisSpacing: 0.1,
                           mainAxisSpacing: 0.0,
                         ),
                         itemCount: 10,
