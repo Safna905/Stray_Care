@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
 import 'package:straycare/widgets/sizedbox.dart';
 
+import '../Connection/connection.dart';
 import '../widgets/text.dart';
 import 'missingdog.dart';
 
@@ -13,7 +15,9 @@ class MissingPetListPage extends StatefulWidget {
 }
 
 class _MissingPetListPageState extends State<MissingPetListPage> {
-  Widget getTextButton(String text, Widget navpage) {
+
+
+  Widget getTextButton(String text, String type) {
     return Padding(
       padding: EdgeInsets.all(15.0.h),
       child: SizedBox(
@@ -22,7 +26,7 @@ class _MissingPetListPageState extends State<MissingPetListPage> {
         child: TextButton(
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => navpage));
+                context, MaterialPageRoute(builder: (context) => MissingDogsPage(type)));
           },
           style: TextButton.styleFrom(
             backgroundColor: const Color(0XFF0F0E0E).withOpacity(0.75),
@@ -38,6 +42,8 @@ class _MissingPetListPageState extends State<MissingPetListPage> {
       ),
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +81,9 @@ class _MissingPetListPageState extends State<MissingPetListPage> {
                   sbh30,
                   sbh30,
                   //catogories
-                  getTextButton('DOGS', MissingDogsPage()),
-                  getTextButton('CAT', MissingDogsPage()),
-                  getTextButton('OTHER',MissingDogsPage()),
+                  getTextButton('DOGS', "dog"),
+                  getTextButton('CAT', "cat"),
+                  getTextButton('OTHER',"other"),
                 ],
               ),
             ),

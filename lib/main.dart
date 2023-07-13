@@ -8,6 +8,7 @@ import 'package:straycare/Screens/welcome.dart';
 import 'Screens/adopt.dart';
 import 'Screens/adoptview.dart';
 import 'Screens/donation.dart';
+import 'Screens/editprofile.dart';
 import 'Screens/find.dart';
 import 'Screens/missing_pet_list.dart';
 import 'Screens/officeadopt.dart';
@@ -17,6 +18,7 @@ import 'Screens/report_animal_issue.dart';
 import 'Screens/reportcatogory.dart';
 import 'Screens/screenone.dart';
 import 'Screens/signincatogories.dart';
+import 'Screens/userhome.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,8 +46,11 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFFFFCE56),
               )),
           home:
+          //EditProfilePage()
+          UserHomePage()
+          //FindPage()
 
-            ReportAnimalIssuePge()
+            //ReportAnimalIssuePge()
           //SignUpPage()
           //WelcomePage()
           //MissingPetListPage(),

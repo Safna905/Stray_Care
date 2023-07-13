@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hintText;
-  final Text
+  final Text;
 
   @override
   Widget build(BuildContext context) {

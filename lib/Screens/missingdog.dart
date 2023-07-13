@@ -1,17 +1,42 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
 import 'package:straycare/widgets/sizedbox.dart';
 
+import '../Connection/connection.dart';
 import '../widgets/text.dart';
 
 class MissingDogsPage extends StatefulWidget {
-  const MissingDogsPage({Key? key}) : super(key: key);
+  MissingDogsPage(String type, {Key? key}) : super(key: key);
+var mistype;
 
   @override
   State<MissingDogsPage> createState() => _MissingDogsPageState();
 }
 
 class _MissingDogsPageState extends State<MissingDogsPage> {
+var flag =0;
+  Future View() async {
+    print(widget.mistype);
+    var response = await get(Uri.parse('${Con.url}missingview.php'));
+
+    print(response.statusCode);
+    print(jsonDecode(response.body));
+    // print(jsonDecode(response.body)["result"]);
+    // var jsondata=jsonDecode(response.body);
+    if(response.statusCode == 200) {
+
+    //   if(jsonDecode(response.body)['result'] == "Success") {
+    // //   var path =  await get(Uri.parse('${Con.url}missingview.php/missingCase'));
+    //     print('recieved');
+        flag = 1;
+       return json.decode(response.body) ;
+      }
+
+        }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,23 +104,40 @@ class _MissingDogsPageState extends State<MissingDogsPage> {
                       ),
                     ),
                   ),
+                  sbh30,
                   Container(
                     height: 500.h,
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 0.1,
-                          mainAxisSpacing: 0.0,
-                        ),
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            height: 102.h,
-                            width: 119.w,
-                            child: Image.asset('assets/images/Rectangle 183.png'),
-                          );
-                        }),
+                    child: FutureBuilder(
+                      future: View(),
+                      builder: (context, snapshot) {
+                        if( snapshot.hasError) {
+                          print(snapshot.error);
+                        }
+
+                        return  flag == 1 ?GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 0.1,
+                              mainAxisSpacing: 0.0,
+
+                            ),
+                            itemCount: snapshot.data.length ,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                height: 102.h,
+                                width: 119.w,
+                                child: Image(
+                                  image:
+                                  NetworkImage('${Con.url}/missingCase/${snapshot.data[index]["image"]}'),
+                                )
+                              );
+                            })
+                        :Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    ),
                   )
                 ],
               ),

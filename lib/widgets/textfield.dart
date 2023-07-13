@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-Widget textfield(hint, fcolor, fsize, bordercolor, hpad, vpad, radius,fillcolor) {
+Widget textfield(hint, fcolor, fsize, bordercolor, hpad, vpad, radius,fillcolor,[TextEditingController? ctr]) {
   return TextField(
+    controller: ctr,
       decoration: InputDecoration(
         fillColor: fillcolor,
           border: OutlineInputBorder(

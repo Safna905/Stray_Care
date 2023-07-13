@@ -79,8 +79,8 @@ class _PetFoundPageState extends State<PetFoundPage> {
                 sbh30,
                 sbh30,
                 //catogories of found your pet
-                getTextButton('MISSING PET LIST', MissingPetListPage()),
-                getTextButton( 'REPORT PET MISSING',ReportPetMissingPage()),
+                getTextButton('MISSING PET LIST', const MissingPetListPage()),
+                getTextButton( 'REPORT PET MISSING',const ReportPetMissingPage()),
               ],
             ),
           ),
