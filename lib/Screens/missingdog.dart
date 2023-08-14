@@ -9,33 +9,35 @@ import '../Connection/connection.dart';
 import '../widgets/text.dart';
 
 class MissingDogsPage extends StatefulWidget {
-  MissingDogsPage(String type, {Key? key}) : super(key: key);
-var mistype;
+  MissingDogsPage(String type, {Key? key}) : super(key: key) {
+    this.type = type;
+  }
+  var type;
 
   @override
   State<MissingDogsPage> createState() => _MissingDogsPageState();
 }
 
 class _MissingDogsPageState extends State<MissingDogsPage> {
-var flag =0;
+  var flag = 0;
   Future View() async {
-    print(widget.mistype);
-    var response = await get(Uri.parse('${Con.url}missingview.php'));
+    print(widget.type);
+    var data = {"Type": widget.type};
+    var response =
+        await post(Uri.parse('${Con.url}missingview.php'), body: data);
 
     print(response.statusCode);
     print(jsonDecode(response.body));
     // print(jsonDecode(response.body)["result"]);
     // var jsondata=jsonDecode(response.body);
-    if(response.statusCode == 200) {
-
-    //   if(jsonDecode(response.body)['result'] == "Success") {
-    // //   var path =  await get(Uri.parse('${Con.url}missingview.php/missingCase'));
-    //     print('recieved');
-        flag = 1;
-       return json.decode(response.body) ;
-      }
-
-        }
+    if (response.statusCode == 200) {
+      //   if(jsonDecode(response.body)['result'] == "Success") {
+      // //   var path =  await get(Uri.parse('${Con.url}missingview.php/missingCase'));
+      //     print('recieved');
+      flag = 1;
+      return json.decode(response.body);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,20 +73,18 @@ var flag =0;
             child: SingleChildScrollView(
               child: Column(
                 children: [
-
                   sbh30,
                   //search bar
                   Container(
                     height: 53.h,
                     width: 310.w,
                     decoration: BoxDecoration(
-                      color: Color(0XFFFFFFFF).withOpacity(0.45),
-                      borderRadius: BorderRadius.circular(8.r),
-                      border: Border.all()
-                    ),
+                        color: Color(0XFFFFFFFF).withOpacity(0.45),
+                        borderRadius: BorderRadius.circular(8.r),
+                        border: Border.all()),
                     child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 25.w, vertical: 10.h),
                       child: Row(
                         children: [
                           Text(
@@ -108,36 +108,34 @@ var flag =0;
                   Container(
                     height: 500.h,
                     child: FutureBuilder(
-                      future: View(),
-                      builder: (context, snapshot) {
-                        if( snapshot.hasError) {
-                          print(snapshot.error);
-                        }
+                        future: View(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            print(snapshot.error);
+                          }
 
-                        return  flag == 1 ?GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 0.1,
-                              mainAxisSpacing: 0.0,
-
-                            ),
-                            itemCount: snapshot.data.length ,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                height: 102.h,
-                                width: 119.w,
-                                child: Image(
-                                  image:
-                                  NetworkImage('${Con.url}/missingCase/${snapshot.data[index]["image"]}'),
-                                )
-                              );
-                            })
-                        :Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                    ),
+                          return flag == 1
+                              ? GridView.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 0.1,
+                                    mainAxisSpacing: 0.0,
+                                  ),
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                        height: 102.h,
+                                        width: 119.w,
+                                        child: Image(
+                                          image: NetworkImage(
+                                              '${Con.url}/missingCase/${snapshot.data[index]["image"]}'),
+                                        ));
+                                  })
+                              : Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                        }),
                   )
                 ],
               ),

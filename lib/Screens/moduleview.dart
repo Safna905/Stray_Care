@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../widgets/sizedbox.dart';
+import '../widgets/textfield.dart';
+
 class ModuleView extends StatefulWidget {
   const ModuleView({Key? key}) : super(key: key);
 
@@ -9,6 +12,9 @@ class ModuleView extends StatefulWidget {
 }
 
 class _ModuleViewState extends State<ModuleView> {
+
+
+  TextEditingController rnamectr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +43,19 @@ class _ModuleViewState extends State<ModuleView> {
               Padding(
                 padding: EdgeInsets.only(left: 20.0.w,
                 bottom: 10.h),
-                child: Text('Reporter Name',
+                child: Text('Reporter Name :',
                     style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 20.sp,
                   color: Colors.white,
                 ),),
               ),
+                   getTextField("", Colors.black, 20.sp, Colors.black, 10.0.w,
+                      20.0.h, 10.r,rnamectr),
+               sbh30,
+
+
+
                   Padding(
                     padding: EdgeInsets.only(left: 20.0.w,
                         bottom: 10.h),

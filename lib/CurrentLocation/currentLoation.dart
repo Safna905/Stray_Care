@@ -3,7 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class LocationController extends GetxController {
-  late Position currentPosition;
+  late Position? currentPosition;
   var isLoading = false.obs;
 
   String? currentLocation;
@@ -37,6 +37,20 @@ class LocationController extends GetxController {
       myLong = long;
       update();
     } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void>getCurrentLocation() async {
+    try {
+      isLoading(true);
+      update();
+      currentPosition = await getPosition();
+      getAddressFromLatLng(currentPosition!.longitude, currentPosition!.latitude);
+      isLoading(false);
+      update();
+    }
+    catch(e) {
       print(e);
     }
   }

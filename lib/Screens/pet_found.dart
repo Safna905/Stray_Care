@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:straycare/Screens/reportmissingcatogory.dart';
 import 'package:straycare/Screens/reportpetmissing.dart';
 import 'package:straycare/widgets/sizedbox.dart';
 import 'package:straycare/widgets/text.dart';
@@ -80,7 +81,7 @@ class _PetFoundPageState extends State<PetFoundPage> {
                 sbh30,
                 //catogories of found your pet
                 getTextButton('MISSING PET LIST', const MissingPetListPage()),
-                getTextButton( 'REPORT PET MISSING',const ReportPetMissingPage()),
+                getTextButton( 'REPORT PET MISSING',const ReportMissingPetListPage()),
               ],
             ),
           ),

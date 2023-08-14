@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
+import 'package:straycare/SharedPreferences/sharedgetdata.dart';
 import 'package:straycare/widgets/textfield.dart';
 
 import '../Connection/connection.dart';
@@ -23,11 +24,31 @@ class _EditProfilePageState extends State<EditProfilePage> {
   TextEditingController mobctr = TextEditingController();
   TextEditingController placectr = TextEditingController();
   TextEditingController passwordctr = TextEditingController();
+  var log;
+
+  void credentials() async{
+    Map<String, String> credentials = await getCredentials();
+    namectr.text = credentials["name"]!;
+    emailctr.text = credentials["email"]!;
+    placectr.text = credentials["place"]!;
+    mobctr.text = credentials["phone"]!;
+    passwordctr.text = credentials["password"]!;
+    log = credentials["logid"]!;
+  }
+
+  Future<void> _refresh() async {
+    // Simulate a delay for fetching new data
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {});
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+     credentials();
+
   }
 
   Future<void> edit() async {
@@ -38,7 +59,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       "place": placectr.text,
       "phone": mobctr.text,
       "password": passwordctr.text,
-      "log_id" : "2"
+      "log_id" : log
     };
 
     print("go");
@@ -67,17 +88,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
           image: AssetImage('assets/images/Android Large - 2.png'),
           fit: BoxFit.cover,
         )),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(15.0.w),
-            child: Column(
+        child: Padding(
+          padding: EdgeInsets.all(15.0.w),
+          child:RefreshIndicator(
+            child: ListView(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 70.h, bottom: 10.h),
-                  child: Image.asset('assets/images/Ellipse 12.png'),
+                sbh30,
+                SizedBox(
+                  height: 200.h,
+                    child: Image.asset('assets/images/Ellipse 12.png')),
+                Align(
+                  alignment: Alignment.center,
+                  child: text('Edit profile picture', 20.sp, Colors.black,
+                      FontWeight.w600),
                 ),
-                text('Edit profile picture', 20.sp, Colors.black,
-                    FontWeight.w600),
                 sizedbox(50.0.h, .0),
                 Align(
                     alignment: Alignment.topLeft,
@@ -117,27 +143,31 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 getTextField("", Colors.black, 20.sp, Colors.black, 10.0.w,
                     20.0.h, 10.r,passwordctr),
                 sizedbox(30.0, .0),
-                SizedBox(
-                  height: 40.h,
-                  width: 142.h,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.r),
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    height: 40.h,
+                    width: 142.h,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.r),
+                        ),
+                        backgroundColor: Colors.black,
                       ),
-                      backgroundColor: Colors.black,
+                      onPressed: () {
+
+                            edit();
+                            print('ready to add fields');
+                          },
+
+                      child: text('submit', 20.sp, Colors.white, FontWeight.w600),
                     ),
-                    onPressed: () {
-
-                          edit();
-                          print('ready to add fields');
-                        },
-
-                    child: text('submit', 20.sp, Colors.white, FontWeight.w600),
                   ),
                 )
               ],
             ),
+            onRefresh: _refresh,
           ),
         ),
       ),

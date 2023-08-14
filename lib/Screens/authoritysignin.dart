@@ -129,12 +129,9 @@ class _AuthoritySignInState extends State<AuthoritySignIn> {
 
                         //sign in with facbook or google
                         Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: EdgeInsets.all(30.0),
+                          child: Wrap(
 
-                              vertical: 30.h,
-                              horizontal: 59.w),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
                                   width: 26.w,

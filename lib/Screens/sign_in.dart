@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:straycare/Screens/userhome.dart';
+import 'package:straycare/SharedPreferences/sharedgetdata.dart';
 
 import '../Connection/connection.dart';
 
@@ -21,6 +23,16 @@ class _SignInPageState extends State<SignInPage> {
 
   var emailctr = TextEditingController();
   var passwordctr = TextEditingController();
+
+  var name;
+  var email;
+  var place;
+  var mob;
+  var phone;
+  var password;
+  var logId;
+
+
 
   Widget getTextField(String hint, TextEditingController ctr) {
     return Material(
@@ -59,7 +71,17 @@ class _SignInPageState extends State<SignInPage> {
       };
 
       var response = await post(Uri.parse('${Con.url}userlogin.php'), body: data);
+      print(response.body);
       if (jsonDecode(response.body)['result'] == 'Success') {
+        name = jsonDecode(response.body)['name'];
+        print(name);
+        email = jsonDecode(response.body)['email'];
+        place = jsonDecode(response.body)['place'];
+        mob = jsonDecode(response.body)['phone'];
+        password = jsonDecode(response.body)['password'];
+        logId = jsonDecode(response.body)['log_id'];
+        savaCredentials(name, email, place, mob, password, logId);
+
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Login success....')));
         Navigator.pushReplacement(context,

@@ -12,13 +12,13 @@ class ReportCatogoryPage extends StatefulWidget {
 }
 
 class _ReportCatogoryPageState extends State<ReportCatogoryPage> {
-  Widget getbutton({required String text}) {
+  Widget getbutton(String text, String type) {
     return SizedBox(
       height: 86.h,
       width: 299.w,
       child: ElevatedButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ReportInjuredPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ReportInjuredPage(casetype:type)));
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF0F0E0E).withOpacity(0.75),
@@ -73,15 +73,15 @@ class _ReportCatogoryPageState extends State<ReportCatogoryPage> {
 
                   sbh30,
 
-                  getbutton(text: 'STRAY ANIMAL'),
+                  getbutton('STRAY ANIMAL', "Stray"),
                   sbh10,
-                  getbutton(text: 'INJURED ANIMAL'),
+                  getbutton( 'INJURED ANIMAL', "Injured"),
                   sbh10,
-                  getbutton(text: 'AGRESSIVE ANIMAL'),
+                  getbutton( 'AGRESSIVE ANIMAL', "Aggressive"),
                   sbh10,
-                  getbutton(text: 'WILD ANIMAL'),
+                  getbutton('WILD ANIMAL', "Wild"),
                   sbh10,
-                  getbutton(text: 'ABUSE TOWARDS ANIMALS'),
+                  getbutton('ABUSE TOWARDS ANIMALS', "Abused"),
                   sbh10,
                 ],
               ),

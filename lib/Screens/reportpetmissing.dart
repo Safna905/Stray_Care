@@ -10,10 +10,15 @@ import 'package:straycare/widgets/textbutton.dart';
 import 'package:straycare/widgets/textfield.dart';
 
 import '../Connection/connection.dart';
+import '../SharedPreferences/sharedgetdata.dart';
 import '../widgets/sizedbox.dart';
 
 class ReportPetMissingPage extends StatefulWidget {
-  const ReportPetMissingPage({Key? key}) : super(key: key);
+   ReportPetMissingPage(String type, {Key? key}) : super(key: key){
+    this.type = type;
+  }
+
+  var type;
 
   @override
   State<ReportPetMissingPage> createState() => _ReportPetMissingPageState();
@@ -30,10 +35,17 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
   var animalTypectr = TextEditingController();
   var descriptionctr = TextEditingController();
 
+  var log;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+  }
+
+  void credentials() async{
+    Map<String, String> credentials = await getCredentials();
+    log = credentials["logid"]!;
   }
 
   File? _image;
@@ -63,11 +75,23 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
   }
 
   Future upload(File imageFile) async {
+
+    print(widget.type);
+    print(log);
+    print(breedctr.text);
+    print(namectr.text);
+    print(genderctr.text);
+    print(descriptionctr.text);
+    print(colorctr.text);
+    print(misDatectr.text);
+    print(mobctr.text);
+    print(locationctr.text);
+
     var uri = Uri.parse('${Con.url}missing.php');
     var request = http.MultipartRequest("POST", uri);
 
-    request.fields['user_id'] = '6';
-    request.fields['animal_type'] = animalTypectr.text;
+    request.fields['user_id'] = log;
+    request.fields['animal_type'] = widget.type;
     request.fields['breed'] = breedctr.text;
     request.fields['name'] = namectr.text;
     request.fields['gender'] = genderctr.text;
@@ -89,17 +113,11 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Failed to insert !!....')));
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => ReportPetMissingPage()));
+          MaterialPageRoute(builder: (context) => ReportPetMissingPage(widget.type)));
     }
 
   }
 
-  // Future<void> submit() async {
-  //
-  //
-  //
-
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -198,9 +216,9 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
                   10.0.h, 50.r, breedctr),
               sbh10,
 
-              getTextField("Animal type:", Colors.black, 15.sp, Colors.black,
-                  20.0.w, 10.0.h, 50.r, animalTypectr),
-              sbh10,
+              // getTextField("Animal type:", Colors.black, 15.sp, Colors.black,
+              //     20.0.w, 10.0.h, 50.r, animalTypectr),
+              // sbh10,
 
               getTextField("Description:", Colors.black, 15.sp, Colors.black,
                   20.0.w, 10.0.h, 50.r, descriptionctr),
@@ -220,11 +238,22 @@ class _ReportPetMissingPageState extends State<ReportPetMissingPage> {
 
               textbutton(263.w, 66.h, const Color(0xFF20614A), 50.r, 'submit',
                   20.sp, FontWeight.w600, () {
+                print('**********************INSIDE BUTTON PRESS START******************************');
+                print(widget.type);
+                // print(log);
+                print(breedctr.text);
+                print(namectr.text);
+                print(genderctr.text);
+                print(descriptionctr.text);
+                print(colorctr.text);
+                print(misDatectr.text);
+                print(mobctr.text);
+                print(locationctr.text);
+                print('**********************INSIDE BUTTON PRESS END******************************');
                 if (namectr.text.isNotEmpty &&
                     genderctr.text.isNotEmpty &&
                     colorctr.text.isNotEmpty &&
                     breedctr.text.isNotEmpty &&
-                    animalTypectr.text.isNotEmpty &&
                     descriptionctr.text.isNotEmpty &&
                     misDatectr.text.isNotEmpty &&
                     locationctr.text.isNotEmpty &&

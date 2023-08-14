@@ -7,18 +7,25 @@ import 'package:straycare/Screens/welcome.dart';
 
 import 'Screens/adopt.dart';
 import 'Screens/adoptview.dart';
+import 'Screens/authoritysignin.dart';
 import 'Screens/donation.dart';
 import 'Screens/editprofile.dart';
 import 'Screens/find.dart';
+import 'Screens/forestview.dart';
+import 'Screens/lsgview.dart';
 import 'Screens/missing_pet_list.dart';
+import 'Screens/moduleview.dart';
 import 'Screens/officeadopt.dart';
 import 'Screens/pet_found.dart';
+import 'Screens/policeview.dart';
 import 'Screens/report-injured.dart';
 import 'Screens/report_animal_issue.dart';
 import 'Screens/reportcatogory.dart';
 import 'Screens/screenone.dart';
 import 'Screens/signincatogories.dart';
+import 'Screens/signup.dart';
 import 'Screens/userhome.dart';
+import 'Screens/vetview.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,8 +53,16 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFFFFCE56),
               )),
           home:
+
+          LsgViewPage()
+          //Vetview()
+          //ForestViewPage()
+          //PoliceView()
+          //ModuleView()
+          //AuthoritySignIn()
+         //SignInPage()
           //EditProfilePage()
-          UserHomePage()
+          //UserHomePage()
           //FindPage()
 
             //ReportAnimalIssuePge()

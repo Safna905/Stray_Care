@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:straycare/Screens/sign_in.dart';
 import 'package:straycare/Screens/userhome.dart';
 
@@ -25,6 +26,8 @@ class _SignUpPageState extends State<SignUpPage> {
   var placectr = TextEditingController();
   var phonectr = TextEditingController();
   var passwordctr = TextEditingController();
+
+
 
   Widget getTextField(String hint, TextEditingController ctr) {
     return Material(
@@ -65,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
       "password": passwordctr.text,
     };
     print("inside send data 1");
-    var response = await post(Uri.parse('http://192.168.0.108/StrayCare/tables/register.php'), body: data);
+    var response = await post(Uri.parse('${Con.url}register.php'), body: data);
     print(response.statusCode);
     print(response.body);
     print("inside send data");

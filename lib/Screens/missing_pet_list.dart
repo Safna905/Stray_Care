@@ -15,19 +15,20 @@ class MissingPetListPage extends StatefulWidget {
 }
 
 class _MissingPetListPageState extends State<MissingPetListPage> {
+  void nav(String type) {
+    print(type);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => MissingDogsPage(type)));
+  }
 
-
-  Widget getTextButton(String text, String type) {
+  Widget getTextButton(String text, VoidCallback callback) {
     return Padding(
       padding: EdgeInsets.all(15.0.h),
       child: SizedBox(
         height: 86.h,
         width: 299.w,
         child: TextButton(
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => MissingDogsPage(type)));
-          },
+          onPressed: callback,
           style: TextButton.styleFrom(
             backgroundColor: const Color(0XFF0F0E0E).withOpacity(0.75),
             shape: RoundedRectangleBorder(
@@ -42,8 +43,6 @@ class _MissingPetListPageState extends State<MissingPetListPage> {
       ),
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +80,15 @@ class _MissingPetListPageState extends State<MissingPetListPage> {
                   sbh30,
                   sbh30,
                   //catogories
-                  getTextButton('DOGS', "dog"),
-                  getTextButton('CAT', "cat"),
-                  getTextButton('OTHER',"other"),
+                  getTextButton('DOGS', () {
+                    nav('dog');
+                  }),
+                  getTextButton('CAT', () {
+                    nav("cat");
+                  }),
+                  getTextButton('OTHER', () {
+                    nav("other");
+                  }),
                 ],
               ),
             ),
