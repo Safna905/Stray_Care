@@ -80,6 +80,38 @@ class _AboutUsPageState extends State<AboutUsPage> {
                             12.sp,
                             Colors.black,
                             FontWeight.w400),
+                        ElevatedButton(onPressed: (){
+                          showModalBottomSheet(context: context, builder: (context){
+                            return SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: Wrap(
+                                children: [
+                                  TextField(
+                                 //   controller : deathreasonctr,
+                                    decoration: InputDecoration(
+                                      labelText: "Enter death reason : ",
+                                    ),
+
+                                  ),
+                                  TextField(
+                                //    controller: deathdatectr,
+                                    decoration: InputDecoration(
+                                        labelText: "Enter death date : "
+                                    ),
+                                  //  onTap: pickdate,
+                                  ),
+                                  TextButton(
+                                      onPressed: () {
+                                   //     update(cid);
+                                      },
+                                      child:Text('Exit'))
+                                ],
+                              ),
+                            );
+
+                          });
+
+                        }, child: Text('Test bottom sheet'))
                       ],
                     ),
                   ),

@@ -5,7 +5,11 @@ import 'package:straycare/widgets/text.dart';
 import 'package:straycare/widgets/textfield.dart';
 
 class AdoptViewPage extends StatefulWidget {
-  const AdoptViewPage({Key? key}) : super(key: key);
+   AdoptViewPage({Key? key, required this.catogory, required this.breed, required this.color, required this.gender, required this.missing_from, required this.lastseen_on, required this.health_cond, required this.desc}) : super(key: key);
+
+   var catogory;
+   var breed, color, gender, missing_from, lastseen_on, health_cond;
+   var desc;
 
   @override
   State<AdoptViewPage> createState() => _AdoptViewPageState();
@@ -46,13 +50,13 @@ class _AdoptViewPageState extends State<AdoptViewPage> {
 
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      text('Catogory :', 15.sp, Colors.black, FontWeight.w400),
-                      text('Breed :', 15.sp, Colors.black, FontWeight.w400),
-                      text('Color :', 15.sp, Colors.black, FontWeight.w400),
-                      text('Gender :', 15.sp, Colors.black, FontWeight.w400),
-                      text('Collocted from :', 15.sp, Colors.black, FontWeight.w400),
-                      text('Collocted on :', 15.sp, Colors.black, FontWeight.w400),
-                      text('Health condition :', 15.sp, Colors.black, FontWeight.w400),
+                      text('Catogory :${widget.catogory}', 15.sp, Colors.black, FontWeight.w400),
+                      text('Breed :${widget.breed}', 15.sp, Colors.black, FontWeight.w400),
+                      text('Color :${widget.color}', 15.sp, Colors.black, FontWeight.w400),
+                      text('Gender :${widget.gender}', 15.sp, Colors.black, FontWeight.w400),
+                      text('Missing from :${widget.missing_from}', 15.sp, Colors.black, FontWeight.w400),
+                      text('Lastseen on :${widget.lastseen_on}', 15.sp, Colors.black, FontWeight.w400),
+                      text('Health condition :${widget.health_cond}', 15.sp, Colors.black, FontWeight.w400),
                     ],
                   ),
               ),
@@ -67,7 +71,7 @@ class _AdoptViewPageState extends State<AdoptViewPage> {
                   ), 
                 child: Padding(
                   padding:  EdgeInsets.all(15.0.h),
-                  child: text('description about the animal', 14.sp, Colors.black, FontWeight.w400),
+                  child: text('description about the animal:${widget.desc}', 14.sp, Colors.black, FontWeight.w400),
                 ),
                 ),
               sbh30,
@@ -83,7 +87,7 @@ class _AdoptViewPageState extends State<AdoptViewPage> {
                           borderRadius: BorderRadius.circular(30.r)
                       )
                   ),
-                  child: Text('ADOPT',
+                  child: Text('FOUND',
                     style: TextStyle(
                       color: const Color(0xFFFFFFFF),
                       fontSize: 20.sp,

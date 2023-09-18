@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:straycare/widgets/sizedbox.dart';
+
+import '../Connection/connection.dart';
 
 class DeadDetailsPage extends StatefulWidget {
-  const DeadDetailsPage({Key? key}) : super(key: key);
+  DeadDetailsPage(
+      {Key? key,
+      required this.gender,
+      required this.color,
+      required this.type,
+      required this.healthCondition,
+      required this.collectedFrom,
+      required this.collectedOn,
+      required this.deathReason,
+      required this.deathDate,
+      required this.image})
+      : super(key: key);
+
+  var gender,
+      color,
+      type,
+      healthCondition,
+      collectedFrom,
+      collectedOn,
+      image,
+      deathReason,
+      deathDate;
 
   @override
   State<DeadDetailsPage> createState() => _DeadDetailsPageState();
@@ -18,14 +42,14 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/lightbg.png',
-                ),
-                fit: BoxFit.fill,
-              )),
+            image: AssetImage(
+              'assets/images/lightbg.png',
+            ),
+            fit: BoxFit.fill,
+          )),
           child: SingleChildScrollView(
             child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Icon(
@@ -34,12 +58,35 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
                   color: Color(0xFFFFFFFF),
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.edit,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 13.w,
+                  ),
+                  Text(
+                    'Edit image',
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 55.w),
                 child: Container(
                   height: 161.h,
                   width: 237.w,
-                  child: Image.asset('assets/images/sickdog.png'),
+                  child: Image(
+                    image: NetworkImage(
+                        "${Con.url}/CollectedCase/${widget.image}"),
+                  ),
                 ),
               ),
               Padding(
@@ -49,7 +96,7 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
                   width: 256.w,
                   child: Wrap(direction: Axis.vertical, children: [
                     Text(
-                      'Color:Brown',
+                      'Color:${widget.color}',
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontSize: 20.sp,
@@ -57,7 +104,7 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
                       ),
                     ),
                     Text(
-                      'Draft Type',
+                      'Gender : ${widget.gender}  ',
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontSize: 20.sp,
@@ -65,7 +112,15 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
                       ),
                     ),
                     Text(
-                      'Health condition:Left leg fracture',
+                      'Animal Type : ${widget.type}',
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      'Health condition:${widget.healthCondition}',
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontSize: 20.sp,
@@ -76,7 +131,7 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
                       height: 20.h,
                     ),
                     Text(
-                      'Collected From :Vilayur veterinary hospital on:04/05/2022  ',
+                      'Collected From :${widget.collectedFrom}',
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontSize: 20.sp,
@@ -84,7 +139,7 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
                       ),
                     ),
                     Text(
-                      'Died on : 18/9/2022  ',
+                      'Collected on : ${widget.collectedOn} ',
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontSize: 20.sp,
@@ -92,7 +147,7 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
                       ),
                     ),
                     Text(
-                      'Cause of Death : caccidiamycosis  ',
+                      'Died on : ${widget.deathDate} ',
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontSize: 20.sp,
@@ -100,15 +155,21 @@ class _DeadDetailsPageState extends State<DeadDetailsPage> {
                       ),
                     ),
 
+                    Text(
+                      'Cause of Death : ${widget.deathReason}  ',
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ]),
                 ),
               ),
-
             ]),
           ),
         ),
       ),
     );
-
   }
 }

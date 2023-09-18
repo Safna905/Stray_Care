@@ -5,19 +5,23 @@ import 'package:straycare/Screens/donate.dart';
 import 'package:straycare/Screens/sign_in.dart';
 import 'package:straycare/Screens/welcome.dart';
 
+import 'Screens/about.dart';
 import 'Screens/adopt.dart';
 import 'Screens/adoptview.dart';
 import 'Screens/authoritysignin.dart';
+import 'Screens/deaddetails.dart';
+import 'Screens/deathreason.dart';
 import 'Screens/donation.dart';
 import 'Screens/editprofile.dart';
 import 'Screens/find.dart';
-import 'Screens/forestview.dart';
-import 'Screens/lsgview.dart';
+
 import 'Screens/missing_pet_list.dart';
 import 'Screens/moduleview.dart';
 import 'Screens/officeadopt.dart';
+import 'Screens/officecollected.dart';
+import 'Screens/officehome.dart';
 import 'Screens/pet_found.dart';
-import 'Screens/policeview.dart';
+
 import 'Screens/report-injured.dart';
 import 'Screens/report_animal_issue.dart';
 import 'Screens/reportcatogory.dart';
@@ -25,7 +29,6 @@ import 'Screens/screenone.dart';
 import 'Screens/signincatogories.dart';
 import 'Screens/signup.dart';
 import 'Screens/userhome.dart';
-import 'Screens/vetview.dart';
 
 void main() {
   runApp(MyApp());
@@ -40,39 +43,41 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              iconTheme: IconThemeData(
+              iconTheme: const IconThemeData(
                 color: Colors.black,
               ),
               textTheme: GoogleFonts.interTextTheme(
                 Theme.of(context).textTheme,
               ),
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 backgroundColor: Color(0xFFFFCE56),
               ),
-              bottomAppBarTheme: BottomAppBarTheme(
+              bottomAppBarTheme: const BottomAppBarTheme(
                 color: Color(0xFFFFCE56),
               )),
           home:
+          //AboutUsPage()
+              //AdoptViewPage()
+              // DeadDetailsPage()
+              //LsgViewPage()
+              //Vetview()
+              //ForestViewPage()
+              //PoliceView()
+              //ModuleView()
+              //AuthoritySignIn()
+              //SignInPage()
+              //EditProfilePage()
+              //UserHomePage()
+              //FindPage()
 
-          LsgViewPage()
-          //Vetview()
-          //ForestViewPage()
-          //PoliceView()
-          //ModuleView()
-          //AuthoritySignIn()
-         //SignInPage()
-          //EditProfilePage()
-          //UserHomePage()
-          //FindPage()
+              //ReportAnimalIssuePge()
+              //SignUpPage()
+              //WelcomePage()
+              //MissingPetListPage(),
 
-            //ReportAnimalIssuePge()
-          //SignUpPage()
-          //WelcomePage()
-          //MissingPetListPage(),
-
-          //ReportAnimalIssuePge()
-          //AdoptViewPage()
-          //SigninCatogoriesPage()
+              //ReportAnimalIssuePge()
+              //AdoptViewPage()
+             // SigninCatogoriesPage()
           // OfficeAdoptPage()
           //ReportPetMissingPage()
 
@@ -85,10 +90,9 @@ class MyApp extends StatelessWidget {
           //OfficeDeadPage()
           //MoveToFoster()
           //OficeCollectedPage()
-          //OfficeHomePage()
+          OfficeHomePage()
           //MissingDogsPage()
           // DonationDone()
-
 
           //OtpVerifiedPage(),
           //ScreenTwo(),

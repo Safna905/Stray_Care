@@ -38,7 +38,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Future<void> _refresh() async {
     // Simulate a delay for fetching new data
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     setState(() {});
   }
 
@@ -67,12 +67,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
     print(response.statusCode);
     print(response.body);
     if(jsonDecode(response.body)['result'] == 'Success') {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Updated.....')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Updated.....')));
       Navigator.pop(context);
     }
     else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to update')));
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EditProfilePage()));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to update')));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const EditProfilePage()));
     }
   }
 

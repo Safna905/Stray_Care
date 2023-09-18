@@ -1,4 +1,4 @@
-#Mon Aug 14 12:32:51 IST 2023
+#Thu Sep 14 12:11:14 IST 2023
 base.0=E\:\\straycare\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

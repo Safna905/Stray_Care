@@ -99,13 +99,13 @@ class _SigninCatogoriesPageState extends State<SigninCatogoriesPage> {
                         sbh10,
                         button("OFFICE", SignInPage()),
                         sbh10,
-                        button("LOCAL SELF GOVRNMENT", AuthoritySignIn()),
+                        button("LOCAL SELF GOVRNMENT", AuthoritySignIn(ctype: "Aggressive",)),
                         sbh10,
-                        button("POLICE", AuthoritySignIn()),
+                        button("POLICE", AuthoritySignIn(ctype: "Abused",)),
                         sbh10,
-                        button("FOREST", AuthoritySignIn()),
+                        button("FOREST", AuthoritySignIn(ctype: "Wild",)),
                         sbh10,
-                        button("VETERINARY", AuthoritySignIn())
+                        button("VETERINARY", AuthoritySignIn(ctype: "injured",))
 
 
 

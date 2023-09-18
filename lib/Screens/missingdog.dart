@@ -7,6 +7,7 @@ import 'package:straycare/widgets/sizedbox.dart';
 
 import '../Connection/connection.dart';
 import '../widgets/text.dart';
+import 'missingdetails.dart';
 
 class MissingDogsPage extends StatefulWidget {
   MissingDogsPage(String type, {Key? key}) : super(key: key) {
@@ -20,6 +21,8 @@ class MissingDogsPage extends StatefulWidget {
 
 class _MissingDogsPageState extends State<MissingDogsPage> {
   var flag = 0;
+
+
   Future View() async {
     print(widget.type);
     var data = {"Type": widget.type};
@@ -44,7 +47,7 @@ class _MissingDogsPageState extends State<MissingDogsPage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 112.h,
-        title: text('DOGS', 20.sp, Colors.white, FontWeight.w600),
+        title: text('${widget.type.toUpperCase()}', 20.sp, Colors.white, FontWeight.w600),
         actions: [
           Padding(
             padding: EdgeInsets.only(
@@ -119,18 +122,37 @@ class _MissingDogsPageState extends State<MissingDogsPage> {
                                   gridDelegate:
                                       const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    crossAxisSpacing: 0.1,
-                                    mainAxisSpacing: 0.0,
+                                    crossAxisSpacing: 10.0,
+                                    mainAxisSpacing: 20.0,
                                   ),
                                   itemCount: snapshot.data.length,
                                   itemBuilder: (context, index) {
-                                    return Container(
-                                        height: 102.h,
-                                        width: 119.w,
-                                        child: Image(
-                                          image: NetworkImage(
-                                              '${Con.url}/missingCase/${snapshot.data[index]["image"]}'),
-                                        ));
+                                    return InkWell(
+                                      child: Container(
+                                          height: 102.h,
+                                          width: 119.w,
+                                          child: Image(
+                                            fit: BoxFit.fill,
+                                            image: NetworkImage(
+                                                '${Con.url}/missingCase/${snapshot.data[index]["image"]}'),
+                                          )
+                                      ),
+                                      onTap: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => MissingDetailPage(
+                                          catogory: snapshot.data[index]["animalType"],
+                                          breed: snapshot.data[index]["breed"],
+                                          color: snapshot.data[index]["color"],
+                                          gender: snapshot.data[index]["gender"],
+                                          missing_from:snapshot.data[index]["location"],
+                                            lastseen_on:snapshot.data[index]["missingDate"],
+                                            health_cond:snapshot.data[index]["gender"],
+                                          desc:snapshot.data[index]["description"],
+                                          image: snapshot.data[index]["image"],
+                                          name: snapshot.data[index]["name"],
+                                          misID: snapshot.data[index]["misID"],
+                                        )));
+                                      },
+                                    );
                                   })
                               : Center(
                                   child: CircularProgressIndicator(),
