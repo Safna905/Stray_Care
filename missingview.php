@@ -6,7 +6,7 @@ $Type = $_POST['Type'];
 $list = [];
 
 
-    $sql = mysqli_query($con, "SELECT * FROM missing_tb WHERE animal_type = '$Type' ");
+    $sql = mysqli_query($con, "SELECT * FROM missing_tb WHERE animal_type = '$Type' && status = 'missing' ");
 
 
 
@@ -14,6 +14,7 @@ if ($sql-> num_rows > 0) {
     while ($row = mysqli_fetch_assoc($sql)) {
         $myarray = array();
         $myarray['result'] = 'Success';
+        $myarray["misID"] = $row['missing_id'];
         $myarray['animalType'] = $row['animal_type'];
         $myarray['breed'] = $row['breed'];
         $myarray['name'] = $row['name'];
