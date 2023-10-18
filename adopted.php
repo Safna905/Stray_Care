@@ -2,9 +2,8 @@
 
 include 'connect.php';
 
-$list = [];
 
-$sql = mysqli_query($con, "SELECT * FROM collected_tb ");
+$sql = mysqli_query($con, "SELECT * FROM collected_tb WHERE status = 'Adopted';");
 
 if($sql->num_rows > 0) {
     while($row = mysqli_fetch_assoc($sql)) {
@@ -29,6 +28,5 @@ else {
     array_push($list, $myarray);
 }
 
-echo json_encode($list);
-
+echo json_encode($myarray);
 ?>

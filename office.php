@@ -2,21 +2,30 @@
 
 include 'connect.php';
 
-$Login_id = $_POST['login_id'];
-$Email = $_POST['email'];
-$Location = $_POST['location'];
-$Ph_no = $_POST['ph_no'];
+$list = [];
 
+$sql = mysqli_query($con, "SELECT * FROM office_tb ");
 
-$sql = mysqli_query($con, "INSERT into office_tb(login_id,email,location,ph_no)values ('$Login_id','$Email','$Location','$Ph_no');");
+if ($sql->num_rows > 0) {
+    while ($row = mysqli_fetch_assoc($sql)) {
+        $myarray = array();
+        $myarray['result'] = "Success";
+        $myarray["OfficeID"] = $row['office_id'];
+        $myarray["Code"] = $row['code'];
+        $myarray["Location"] = $row['location'];
+        $myarray["PhoneNum"] = $row['ph_no'];
+        $myarray["Password"] = $row['password'];
+        $myarray["OfficeName"] = $row['office_name'];
+        $myarray["PinNum"] = $row['pin_no'];
 
-if($sql) {
-
-    $myarray['result'] = 'Success';
+        array_push($list, $myarray);
+    }
+} else {
+    $myarray = array();
+    $myarray['result'] = "Failed";
+    array_push($list, $myarray);
 }
-else {
-    $myarray['result'] = 'Failed';
-}
 
-echo json_encode($myarray);
+echo json_encode($list);
+
 ?>
